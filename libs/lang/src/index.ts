@@ -1,27 +1,23 @@
-import { callExpression } from "@babel/types"
-
-export class Error {
-
-    static typeError(): never {
-        throw new Error()
-    }
-}
-
-
 export class StaticFeature {
     key: string = ''
 }
 
+
+export type OrMuliType = OrType[]
+
 export class OrType extends StaticFeature {
     fromJson: (input: any) => OrValue = () => { throw new Error() }
     toJson: (value: OrValue) => any = () => { throw new Error() }
+    equal: (v1: OrValue, v2: OrValue) => boolean = () => false
 }
+
 
 export class OrValue {
     type: OrType = new OrType()
 }
 
 export class OrScope extends StaticFeature {
+    types: Map<string, OrMuliType> = new Map()
     values: Map<string, OrValue> = new Map()
 }
 
@@ -30,110 +26,59 @@ export class OrModule extends StaticFeature {
     scope: OrScope = new OrScope()
 }
 
-export class OrFunc extends StaticFeature {
-    argus: [string, OrType][] = []
+export abstract class OrFunction extends StaticFeature {
+    abstract isNative: boolean
+    argus: [string, OrMuliType][] = []
+    result?: OrMuliType
     scope: OrScope = new OrScope()
 }
 
-
-const TYPE_JSON_STRING = Object.assign(new OrType(), {
-    key: 'string',
-    fromJson: (input: any) => {
-        if (typeof input === 'string') {
-            return new ValueJsonString(input)
-        } else {
-            return Error.typeError()
-        }
-    },
-    toJson: (input: ValueJsonString) => {
-        return input.value
-    }
-})
-
-class ValueJsonString extends OrValue {
-    type: OrType = TYPE_JSON_STRING
-    value: string = ''
-
-    constructor(value: string) {
-        super()
-        this.value = value
-    }
+export class OrNativeFunction extends OrFunction {
+    isNative = true
 }
 
-const TYPE_JSON_NUMBER = Object.assign(new OrType(), {
-    key: 'number',
-    fromJson: (input: any) => {
-        if (typeof input === 'number') {
-            return new ValueJsonNumber(input)
-        } else {
-            return Error.typeError()
-        }
-    },
-    toJson: (input: ValueJsonNumber) => {
-        return input.value
-    }
-})
-
-class ValueJsonNumber extends OrValue {
-    type: OrType = TYPE_JSON_NUMBER
-    value: number = 0
-
-    constructor(value: number) {
-        super()
-        this.value = value
-    }
+export class OrCustomFunction extends OrFunction {
+    isNative = false
+    body: OrExpression = new OrExpressionList()
 }
 
-const TYPE_JSON_BOOLEAN = Object.assign(new OrType(), {
-    key: 'boolean',
-    fromJson: (input: any) => {
-        if (typeof input === 'boolean') {
-            return new ValueJsonBoolean(input)
-        } else {
-            return Error.typeError()
-        }
-    },
-    toJson: (input: ValueJsonBoolean) => {
-        return input.value
-    }
-})
-
-class ValueJsonBoolean extends OrValue {
-    type: OrType = TYPE_JSON_BOOLEAN
-    value: boolean = false
-
-    constructor(value: boolean) {
-        super()
-        this.value = value
-    }
+export abstract class OrExpression {
+    type: OrMuliType = []
 }
 
-const TYPE_JSON_NUll = Object.assign(new OrType(), {
-    key: 'number',
-    fromJson: () => {
-        return new ValueJsonNull()
-    },
-    toJson: () => {
-        return null
-    }
-})
+export class OrReturn extends OrExpression {
 
-class ValueJsonNull extends OrValue {
-    type: OrType = TYPE_JSON_NUll
 }
 
+export class OrSetter extends OrExpression {
+    key: string = ''
+    scope: OrScope = new OrScope()
+    value: OrExpression = new OrExpressionList()
+}
 
-const JSON_MOD = new OrModule()
-const JSON_SCOPE = new OrScope()
+export class OrGetter extends OrExpression {
+    key: string = ''
+    scope: OrScope = new OrScope()
+}
 
-Object.assign(JSON_MOD, {
-    scope: JSON_SCOPE,
-    types: [
-        TYPE_JSON_STRING, 
-        TYPE_JSON_NUMBER , 
-        TYPE_JSON_BOOLEAN, 
-        TYPE_JSON_NUll
-    ]
-})
+export class OrExpressionList extends OrExpression {
+    list: OrExpression = new OrExpressionList()
+}
+
+export class OrMatchValue extends OrExpression {
+    list: [OrValue, OrExpression][] = []
+    else: OrExpression = new OrExpressionList()
+}
+
+export class OrMatchType extends OrExpression {
+    list: [OrType, OrExpression][] = []
+    else: OrExpression = new OrExpressionList()
+}
+
+export class OrValueLoop extends OrExpression {
+    value: OrValue = new OrValue
+    cond: OrExpression = new OrExpressionList()
+    body: OrExpression = new OrExpressionList()
+}
 
 

@@ -1,5 +1,5 @@
 {
-    "name": "@0rz/lang",
+    "name": "@0rz/lang-json",
     "version": "0.0.12",
     "main": "lib/cjs/index.js",
     "module": "lib/mjs/index.js",
@@ -28,5 +28,9 @@
         "ts-jest": "^27.0.1",
         "typescript": "4.3.2",
         "vite": "^2.3.4"
+    },
+    "dependencies": {
+        "@0rz/lang": "^0.0.12",
+        "@0rz/utils": "^0.0.12"
     }
 }

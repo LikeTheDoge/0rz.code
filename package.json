@@ -1,25 +1,22 @@
 {
-  "name": "0rz.code",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/LikeTheDoge/0rz.code.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/LikeTheDoge/0rz.code/issues"
-  },
-  "homepage": "https://github.com/LikeTheDoge/0rz.code#readme",
-  "devDependencies": {
-    "lerna": "^6.1.0"
-  },
-  "workspaces": [
-    "packages/*"
-  ]
+    "name": "0rz.code",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/LikeTheDoge/0rz.code.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/LikeTheDoge/0rz.code/issues"
+    },
+    "homepage": "https://github.com/LikeTheDoge/0rz.code#readme",
+    "devDependencies": {
+        "lerna": "^6.1.0"
+    }
 }
