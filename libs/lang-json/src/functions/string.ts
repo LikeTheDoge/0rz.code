@@ -1,26 +1,26 @@
 import { create } from '@0rz/utils'
-import { OrNativeFunction } from '@0rz/lang'
+import { LangNativeFunction,LangType } from '@0rz/lang'
 import { TYPE_JSON_BOOLEAN, TYPE_JSON_NUll, TYPE_JSON_NUMBER, TYPE_JSON_STRING } from '../value'
 
-export const concat = create(new OrNativeFunction(), {
+export const concat = create(new LangNativeFunction(), {
     argus: [
-        ['a', [TYPE_JSON_STRING]],
-        ['b', [TYPE_JSON_STRING]],
+        ['a', LangType.of(TYPE_JSON_STRING)],
+        ['b', LangType.of(TYPE_JSON_STRING)],
     ],
-    result: [TYPE_JSON_STRING]
+    result: LangType.of(TYPE_JSON_STRING)
 })
 
-export const equal = create(new OrNativeFunction(), {
+export const equal = create(new LangNativeFunction(), {
     argus: [
-        ['a', [TYPE_JSON_STRING]],
-        ['b', [TYPE_JSON_STRING]],
+        ['a', LangType.of(TYPE_JSON_STRING)],
+        ['b', LangType.of(TYPE_JSON_STRING)],
     ],
-    result: [TYPE_JSON_BOOLEAN]
+    result: LangType.of(TYPE_JSON_BOOLEAN)
 })
 
-export const to_num = create(new OrNativeFunction(),{
+export const to_num = create(new LangNativeFunction(),{
     argus: [
-        ['b', [TYPE_JSON_STRING]],
+        ['b', LangType.of(TYPE_JSON_STRING)],
     ],
-    result: [TYPE_JSON_NUll,TYPE_JSON_NUMBER]
+    result: LangType.of(TYPE_JSON_NUll,TYPE_JSON_NUMBER)
 })

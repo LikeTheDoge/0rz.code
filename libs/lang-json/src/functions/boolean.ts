@@ -1,34 +1,34 @@
 import { create } from '@0rz/utils'
-import { OrNativeFunction } from '@0rz/lang'
+import { LangNativeFunction ,LangType} from '@0rz/lang'
 import { TYPE_JSON_BOOLEAN } from '../value'
 
-export const equal = create(new OrNativeFunction(), {
+export const equal = create(new LangNativeFunction(), {
     argus: [
-        ['a', [TYPE_JSON_BOOLEAN]],
-        ['b', [TYPE_JSON_BOOLEAN]],
+        ['a', LangType.of(TYPE_JSON_BOOLEAN)],
+        ['b', LangType.of(TYPE_JSON_BOOLEAN)],
     ],
-    result: [TYPE_JSON_BOOLEAN]
+    result: LangType.of(TYPE_JSON_BOOLEAN)
 })
 
-export const not = create(new OrNativeFunction(), {
+export const not = create(new LangNativeFunction(), {
     argus: [
-        ['val', [TYPE_JSON_BOOLEAN]]
+        ['val', LangType.of(TYPE_JSON_BOOLEAN)]
     ],
-    result: [TYPE_JSON_BOOLEAN]
+    result: LangType.of(TYPE_JSON_BOOLEAN)
 })
 
-export const or = create(new OrNativeFunction(), {
+export const or = create(new LangNativeFunction(), {
     argus: [
-        ['a', [TYPE_JSON_BOOLEAN]],
-        ['b', [TYPE_JSON_BOOLEAN]],
+        ['a', LangType.of(TYPE_JSON_BOOLEAN)],
+        ['b', LangType.of(TYPE_JSON_BOOLEAN)],
     ],
-    result: [TYPE_JSON_BOOLEAN]
+    result: LangType.of(TYPE_JSON_BOOLEAN)
 })
 
-export const and = create(new OrNativeFunction(), {
+export const and = create(new LangNativeFunction(), {
     argus: [
-        ['a', [TYPE_JSON_BOOLEAN]],
-        ['b', [TYPE_JSON_BOOLEAN]],
+        ['a', LangType.of(TYPE_JSON_BOOLEAN)],
+        ['b', LangType.of(TYPE_JSON_BOOLEAN)],
     ],
-    result: [TYPE_JSON_BOOLEAN]
+    result: LangType.of(TYPE_JSON_BOOLEAN)
 })

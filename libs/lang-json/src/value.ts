@@ -1,19 +1,7 @@
-import { OrType, OrValue } from '@0rz/lang'
+import { LangType, LangValue } from '@0rz/lang'
 import { create, Error } from '@0rz/utils'
 
-
-export class ValueJsonString extends OrValue {
-    type: OrType = TYPE_JSON_STRING
-    value: string = ''
-
-    constructor(value: string) {
-        super()
-        this.value = value
-    }
-}
-
-export const TYPE_JSON_STRING = create(new OrType(), {
-    key: 'string',
+export const TYPE_JSON_STRING = create(new LangType(LangType.create('JSON', 'STRING')), {
     fromJson: (input: any) => {
         if (typeof input === 'string') {
             return new ValueJsonString(input)
@@ -21,14 +9,14 @@ export const TYPE_JSON_STRING = create(new OrType(), {
             return Error.typeError()
         }
     },
-    toJson: (input: OrValue) => {
+    toJson: (input: LangValue) => {
         if (input instanceof ValueJsonString) {
             return input.value
         } else {
             return Error.typeError()
         }
     },
-    equal: (v1: OrValue, v2: OrValue) => {
+    equal: (v1: LangValue, v2: LangValue) => {
         if (v1 instanceof ValueJsonString && v2 instanceof ValueJsonString) {
             return v1.value === v2.value
         } else {
@@ -37,9 +25,17 @@ export const TYPE_JSON_STRING = create(new OrType(), {
     }
 })
 
+export class ValueJsonString extends LangValue {
+    type: LangType = TYPE_JSON_STRING
+    value: string = ''
 
-export const TYPE_JSON_NUMBER = create(new OrType(), {
-    key: 'number',
+    constructor(value: string) {
+        super()
+        this.value = value
+    }
+}
+
+export const TYPE_JSON_NUMBER = create(new LangType(LangType.create('JSON', 'NUMBER')), {
     fromJson: (input: any) => {
         if (typeof input === 'number') {
             return new ValueJsonNumber(input)
@@ -47,14 +43,14 @@ export const TYPE_JSON_NUMBER = create(new OrType(), {
             return Error.typeError()
         }
     },
-    toJson: (input: OrValue) => {
+    toJson: (input: LangValue) => {
         if (input instanceof ValueJsonNumber) {
             return input.value
         } else {
             return Error.typeError()
         }
     },
-    equal: (v1: OrValue, v2: OrValue) => {
+    equal: (v1: LangValue, v2: LangValue) => {
         if (v1 instanceof ValueJsonNumber && v2 instanceof ValueJsonNumber) {
             return v1.value === v2.value
         } else {
@@ -63,8 +59,8 @@ export const TYPE_JSON_NUMBER = create(new OrType(), {
     }
 })
 
-export class ValueJsonNumber extends OrValue {
-    type: OrType = TYPE_JSON_NUMBER
+export class ValueJsonNumber extends LangValue {
+    type: LangType = TYPE_JSON_NUMBER
     value: number = 0
 
     constructor(value: number) {
@@ -73,8 +69,7 @@ export class ValueJsonNumber extends OrValue {
     }
 }
 
-export const TYPE_JSON_BOOLEAN = create(new OrType(), {
-    key: 'boolean',
+export const TYPE_JSON_BOOLEAN = create(new LangType(LangType.create('JSON', 'BOOLEAN')), {
     fromJson: (input: any) => {
         if (typeof input === 'boolean') {
             return new ValueJsonBoolean(input)
@@ -82,14 +77,14 @@ export const TYPE_JSON_BOOLEAN = create(new OrType(), {
             return Error.typeError()
         }
     },
-    toJson: (input: OrValue) => {
+    toJson: (input: LangValue) => {
         if (input instanceof ValueJsonNumber) {
             return input.value
         } else {
             return Error.typeError()
         }
     },
-    equal: (v1: OrValue, v2: OrValue) => {
+    equal: (v1: LangValue, v2: LangValue) => {
         if (v1 instanceof ValueJsonBoolean && v2 instanceof ValueJsonBoolean) {
             return v1.value === v2.value
         } else {
@@ -98,8 +93,8 @@ export const TYPE_JSON_BOOLEAN = create(new OrType(), {
     }
 })
 
-export class ValueJsonBoolean extends OrValue {
-    type: OrType = TYPE_JSON_BOOLEAN
+export class ValueJsonBoolean extends LangValue {
+    type: LangType = TYPE_JSON_BOOLEAN
     value: boolean = false
 
     constructor(value: boolean) {
@@ -108,15 +103,14 @@ export class ValueJsonBoolean extends OrValue {
     }
 }
 
-export const TYPE_JSON_NUll = create(new OrType(), {
-    key: 'number',
+export const TYPE_JSON_NUll = create(new LangType(LangType.create('JSON', 'NUll')), {
     fromJson: () => {
         return new ValueJsonNull()
     },
     toJson: () => {
         return null
     },
-    equal: (v1: OrValue, v2: OrValue) => {
+    equal: (v1: LangValue, v2: LangValue) => {
         if (v1 instanceof ValueJsonNull && v2 instanceof ValueJsonNull) {
             return true
         } else {
@@ -125,8 +119,8 @@ export const TYPE_JSON_NUll = create(new OrType(), {
     }
 })
 
-export class ValueJsonNull extends OrValue {
-    type: OrType = TYPE_JSON_NUll
+export class ValueJsonNull extends LangValue {
+    type: LangType = TYPE_JSON_NUll
 }
 
 
