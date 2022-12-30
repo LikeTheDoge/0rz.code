@@ -5,8 +5,9 @@ export const LANG_FUNCTION_TYPE = new LangType(
     LangType.create('lang', 'function')
 )
 
-export abstract class LangFunction {
+export abstract class LangFunction extends LangValue{
     abstract isNative: boolean
+    type: LangType = LANG_FUNCTION_TYPE
     scope: LangScope = new LangScope()
     argus: [string, LangTypes][] = []
     result: LangTypes = new Set()
