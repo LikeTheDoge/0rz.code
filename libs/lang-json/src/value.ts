@@ -103,7 +103,7 @@ export class ValueJsonBoolean extends LangValue {
     }
 }
 
-export const TYPE_JSON_NUll = create(new LangType(LangType.create('JSON', 'NUll')), {
+export const TYPE_JSON_NULL = create(new LangType(LangType.create('JSON', 'NUll')), {
     fromJson: () => {
         return new ValueJsonNull()
     },
@@ -120,7 +120,7 @@ export const TYPE_JSON_NUll = create(new LangType(LangType.create('JSON', 'NUll'
 })
 
 export class ValueJsonNull extends LangValue {
-    type: LangType = TYPE_JSON_NUll
+    type: LangType = TYPE_JSON_NULL
 }
 
 

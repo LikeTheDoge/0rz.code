@@ -1,13 +1,13 @@
 import { LangScope } from "./mod";
 import { LangType, LangTypes, LangValue } from "./type";
 
-export const LANG_FUNCTION_TYPE = new LangType(
+export const TYPE_LANG_FUNCTION = new LangType(
     LangType.create('lang', 'function')
 )
 
 export abstract class LangFunction extends LangValue{
     abstract isNative: boolean
-    type: LangType = LANG_FUNCTION_TYPE
+    type: LangType = TYPE_LANG_FUNCTION
     scope: LangScope = new LangScope()
     argus: [string, LangTypes][] = []
     result: LangTypes = new Set()

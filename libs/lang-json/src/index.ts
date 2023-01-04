@@ -4,7 +4,8 @@ import * as num from "./functions/num"
 import * as string from "./functions/string"
 import * as boolean from "./functions/boolean"
 
-import { TYPE_JSON_STRING, TYPE_JSON_NUMBER, TYPE_JSON_BOOLEAN, TYPE_JSON_NUll } from './value'
+
+import { TYPE_JSON_STRING, TYPE_JSON_NUMBER, TYPE_JSON_BOOLEAN, TYPE_JSON_NULL } from './value'
 
 import { ValueJsonBoolean, ValueJsonNull, ValueJsonNumber, ValueJsonString } from './value'
 
@@ -33,7 +34,7 @@ export const json = create(new LangModule(), {
         TYPE_JSON_STRING,
         TYPE_JSON_NUMBER,
         TYPE_JSON_BOOLEAN,
-        TYPE_JSON_NUll
+        TYPE_JSON_NULL
     )
 })
 
@@ -42,12 +43,12 @@ export const functions = {
     num, string, boolean
 }
 
-export const values = {
+export {
     ValueJsonBoolean, ValueJsonNull, ValueJsonNumber, ValueJsonString
 }
 
-export const types = {
-    TYPE_JSON_STRING, TYPE_JSON_NUMBER, TYPE_JSON_BOOLEAN, TYPE_JSON_NUll
+export {
+    TYPE_JSON_STRING, TYPE_JSON_NUMBER, TYPE_JSON_BOOLEAN, TYPE_JSON_NULL
 }
 
 
