@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "dev": "vite",
-        "build": "run-p type-check build-only",
+        "sbuild": "run-p type-check build-only",
         "preview": "vite preview --port 4173",
         "clean": "rimraf ./dist",
         "prod": "togii-static 5173 ./dist",

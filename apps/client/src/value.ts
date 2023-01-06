@@ -7,7 +7,7 @@ import JsonNumberRender from './components/json/JsonNumberRender.vue'
 import JsonStringRender from './components/json/JsonStringRender.vue'
 
 import { TYPE_LANG_FUNCTION } from '@0rz/lang'
-import ValueFunctionRender from './components/value/ValueFunctionRender.vue'
+import ValueFunctionRender from './components/value/RenderFunction.vue'
 
 
 regist(TYPE_JSON_BOOLEAN, JsonBooleanRender)

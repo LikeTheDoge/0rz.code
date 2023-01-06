@@ -1,6 +1,6 @@
 import type { Component } from "vue";
-import type { LangModule, LangType } from '@0rz/lang'
-import ValueUnknownRender from './ValueUnknownRender.vue'
+import type { LangType } from '@0rz/lang'
+import ValueUnknownRender from './RenderUnknown.vue'
 
 export const value_render: { [key: string]: Component } = {}
 

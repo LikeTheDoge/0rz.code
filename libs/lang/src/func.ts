@@ -21,56 +21,74 @@ export class LangNativeFunction extends LangFunction {
     isNative = true
 }
 
-
 export class LangCustomFunction extends LangFunction {
     isNative = false
-    body: LangExpression = new LangExpressionList()
+    body: LangExpr = new LangExprList()
 }
 
-export type LangExpression = LangValue | LangStatement
+export type LangExpr = LangValue | LangStatement
 
 export abstract class LangStatement {
+    key:string = ''
 }
 
-export class LangExpressionList extends LangStatement {
-    list: LangExpression[] = []
+export class LangExprList extends LangStatement {
+    static key = 'LangExprList'
+    key = 'LangExprList'
+    list: LangExpr[] = []
 }
 
 export class LangReturn extends LangStatement {
-    target: LangExpression = null as any
+    static key = 'LangReturn'
+    key = 'LangReturn'
+    target: LangExpr = null as any
 }
 
 export class LangCall extends LangStatement {
-    fn: LangFunction = null as any
-    inputs: LangExpression[] = []
+    static key = 'LangCall'
+    key = 'LangCall'
+    fn: LangExpr = null as any
+    inputs: LangExpr[] = []
 }
 
 export class LangSetter extends LangStatement {
+    static key = 'LangSetter'
+    key = 'LangSetter'
+
     scope: LangScope = null as any
-    name: string = ''
-    value: LangExpression = null as any
+    identifier: string = ''
+    value: LangExpr = null as any
 }
 
 export class LangGetter extends LangStatement {
+    static key = 'LangGetter'
+    key = 'LangGetter'
     scope: LangScope = null as any
-    name: string = ''
-    value: LangExpression = null as any
+    identifier: string = ''
+    value: LangExpr = null as any
 }
 
 export class LangValueMatch extends LangStatement {
-    list: [LangValue, LangExpression][] = []
-    else: LangExpression = null as any
+    static key = 'LangValueMatch'
+    key = 'LangValueMatch'
+    list: [LangValue, LangExpr][] = []
+    else: LangExpr = null as any
 }
 
 export class LangTypeMatch extends LangStatement {
-    list: [LangType, LangExpression][] = []
-    else: LangExpression = null as any
+    static key = 'LangTypeMatch'
+    key = 'LangTypeMatch'
+    list: [LangType, LangExpr][] = []
+    else: LangExpr = null as any
 }
 
 export class LangValueLoop extends LangStatement {
+    static key = 'LangValueLoop'
+    key = 'LangValueLoop'
+
     value: LangValue = null as any
-    cond: LangExpression = null as any
-    body: LangExpression = null as any
+    cond: LangExpr = null as any
+    body: LangExpr = null as any
 }
 
 
