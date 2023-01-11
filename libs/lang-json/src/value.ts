@@ -1,7 +1,9 @@
 import { LangType, LangValue } from '@0rz/lang'
 import { create, Error } from '@0rz/utils'
+import { namespace_json } from './namespace'
 
-export const TYPE_JSON_STRING = create(new LangType(LangType.create('JSON', 'STRING')), {
+export const TYPE_JSON_STRING = create(new LangType(), {
+    id:namespace_json.type('string'),
     fromJson: (input: any) => {
         if (typeof input === 'string') {
             return new ValueJsonString(input)
@@ -35,7 +37,8 @@ export class ValueJsonString extends LangValue {
     }
 }
 
-export const TYPE_JSON_NUMBER = create(new LangType(LangType.create('JSON', 'NUMBER')), {
+export const TYPE_JSON_NUMBER = create(new LangType(), {
+    id:namespace_json.type('number'),
     fromJson: (input: any) => {
         if (typeof input === 'number') {
             return new ValueJsonNumber(input)
@@ -69,7 +72,8 @@ export class ValueJsonNumber extends LangValue {
     }
 }
 
-export const TYPE_JSON_BOOLEAN = create(new LangType(LangType.create('JSON', 'BOOLEAN')), {
+export const TYPE_JSON_BOOLEAN = create(new LangType(), {
+    id:namespace_json.type('boolean'),
     fromJson: (input: any) => {
         if (typeof input === 'boolean') {
             return new ValueJsonBoolean(input)
@@ -103,7 +107,8 @@ export class ValueJsonBoolean extends LangValue {
     }
 }
 
-export const TYPE_JSON_NULL = create(new LangType(LangType.create('JSON', 'NUll')), {
+export const TYPE_JSON_NULL = create(new LangType(), {
+    id:namespace_json.type('null'),
     fromJson: () => {
         return new ValueJsonNull()
     },

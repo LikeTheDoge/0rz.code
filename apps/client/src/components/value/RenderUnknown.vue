@@ -4,5 +4,5 @@ defineProps<{ value: LangValue }>()
 </script>
 
 <template>
-    <div>unknown value of type {{ value.type.name }}</div>
+    <div>unknown value of type {{ value.type.id  }}</div>
 </template>

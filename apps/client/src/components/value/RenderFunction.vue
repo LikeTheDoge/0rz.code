@@ -1,33 +1,48 @@
 <script setup lang="ts">
 import type { LangValue, LangNativeFunction } from '@0rz/lang';
+import TypeRender from '../TypeRender.vue';
 import { computed } from 'vue';
 
 const val = defineProps<{ value: LangValue }>()
 const func = computed(() => val.value as LangNativeFunction)
 
 const argus = computed(() => {
-    return func.value.argus.map(([name, types]) => {
-        return [name, Array.from(types.values()).map(v => v.name).join(' | ')] as [string, string]
-    })
+    return func.value.argus
 })
 
 const result = computed(()=>{
-    return Array.from(func.value.result).map(v => v.name).join(' | ')
+    return func.value.result
 })
 
 </script>
 
 <template>
-    <div>
-        <h2>argus</h2>
+    <div class="value-function">
         <table>
             <tbody>
                 <tr v-for="argu in argus" :key="argu[0]">
-                    <td style="background:#ccc">{{ argu[0] }}</td>
-                    <td>{{ argu[1] }}</td>
+                    <td class="th">{{ argu[0] }}</td>
+                    <td><TypeRender :types="argu[1]"/></td>
+                </tr>
+                <tr>
+                    <td class="th return">return</td>
+                    <td> <TypeRender :types="result"/></td>
                 </tr>
             </tbody>
         </table>
-        <h2>result : {{ result }}</h2>
     </div>
 </template>
+
+
+<style lang="scss" scoped>
+.value-function{
+    background-color: beige;
+}
+
+.th{
+    text-align: center;
+    font-weight: bold;
+    padding: 0 4px;
+}
+
+</style>

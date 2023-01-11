@@ -1,3 +1,3 @@
 export * from './func'
-export * from './mod'
 export * from './type'
+export * from './mod'

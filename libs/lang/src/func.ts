@@ -1,35 +1,49 @@
-import { LangScope } from "./mod";
+import { create } from "@0rz/utils";
+import { LangIdentifier, LangScope, namespace_lang } from "./mod";
 import { LangType, LangTypes, LangValue } from "./type";
 
-export const TYPE_LANG_FUNCTION = new LangType(
-    LangType.create('lang', 'function')
-)
 
-export abstract class LangFunction extends LangValue{
-    abstract isNative: boolean
-    type: LangType = TYPE_LANG_FUNCTION
-    scope: LangScope = new LangScope()
+
+export abstract class LangFunction extends LangValue {
     argus: [string, LangTypes][] = []
     result: LangTypes = new Set()
 }
 
+export const TYPE_LANG_NATIVE_FUNCTION = create(new LangType(), {
+    id: namespace_lang.type('native'),
+    // todo
+    fromJson: () => null as any,
+    toJson: () => null as any,
+    equal: () => false
+})
 
 export class LangNativeFunction extends LangFunction {
     static all: Map<string, Function> = new Map()
     static set(key: string, func: Function) { LangNativeFunction.all.set(key, func) }
     static get(key: string) { return LangNativeFunction.all.get(key) }
-    isNative = true
+
+    type: LangType = TYPE_LANG_NATIVE_FUNCTION
+    nativeId: LangIdentifier = null as any
 }
 
+export const TYPE_LANG_FUNCTION = create(new LangType(), {
+    id: namespace_lang.type('function'),
+    // todo
+    fromJson: () => null as any,
+    toJson: () => null as any,
+    equal: () => false
+})
+
 export class LangCustomFunction extends LangFunction {
-    isNative = false
+    scope: LangScope = new LangScope()
     body: LangExpr = new LangExprList()
+    type: LangType = TYPE_LANG_FUNCTION
 }
 
 export type LangExpr = LangValue | LangStatement
 
 export abstract class LangStatement {
-    key:string = ''
+    key: string = ''
 }
 
 export class LangExprList extends LangStatement {
