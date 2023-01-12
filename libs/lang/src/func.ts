@@ -1,8 +1,6 @@
 import { create } from "@0rz/utils";
-import { LangIdentifier, LangScope, namespace_lang } from "./mod";
+import { LangIdentifier, LangScope, LangScopeRef, namespace_lang } from "./mod";
 import { LangType, LangTypes, LangValue } from "./type";
-
-
 
 export abstract class LangFunction extends LangValue {
     argus: [string, LangTypes][] = []
@@ -69,16 +67,16 @@ export class LangSetter extends LangStatement {
     static key = 'LangSetter'
     key = 'LangSetter'
 
-    scope: LangScope = null as any
-    identifier: string = ''
+    scope: LangScopeRef = null as any
+    name: string = ''
     value: LangExpr = null as any
 }
 
 export class LangGetter extends LangStatement {
     static key = 'LangGetter'
     key = 'LangGetter'
-    scope: LangScope = null as any
-    identifier: string = ''
+    scope: LangScopeRef = null as any
+    name: string = ''
     value: LangExpr = null as any
 }
 

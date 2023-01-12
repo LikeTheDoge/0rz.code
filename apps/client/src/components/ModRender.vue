@@ -27,7 +27,7 @@ const values = computed(() => {
         <div class="values">
             <div class="value" v-for="(value, i) in values" :key="i">
                 <div class="value-name">{{ value[0] }}</div>
-                <ValueRender :value="value[1]" />
+                <ValueRender :value="value[1].def" />
             </div>
         </div>
     </div>

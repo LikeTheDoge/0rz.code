@@ -5,12 +5,25 @@ import { LangTypes, LangValue } from "./type"
 export class LangScope {
     static values(vals: [string, LangValue][]) {
         const map: Map<string, LangValue> = new Map()
-        vals.map(([name, val]) => {
-            map.set(name, val)
-        })
+        vals.map(([name, val]) => { map.set(name, val) })
         return map
     }
-    values: Map<string, LangValue> = new Map()
+
+    static create(vals: [string, LangValue, LangTypes][]) {
+        const scope = new LangScope()
+        vals.map(([name, def, type]) => { scope.values.set(name, { def, type }) })
+        return scope
+    }
+
+    key: string = Math.random().toString()
+    values: Map<string, { def: LangValue, type: LangTypes }> = new Map()
+}
+
+export class LangScopeRef {
+    static from(...scopes: LangScope[]) {
+        return create(new LangScopeRef(), { keys: scopes.map(v => v.key) })
+    }
+    keys: string[] = []
 }
 
 export class LangModule {
@@ -19,7 +32,6 @@ export class LangModule {
     scope: LangScope = new LangScope()
     libs: LangModule[] = []
 }
-
 
 export class LangNamespace {
     static create(key: string) {

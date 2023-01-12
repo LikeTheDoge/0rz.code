@@ -9,7 +9,7 @@ const expr = computed(() => val.expr as LangTypeMatch)
 
 <template>
     <div v-for="cas in expr.list">
-        <div>{{ cas[0].name }}</div>
+        <div>{{ cas[0].id }}</div>
         <div>
             <ExpressionRenderVue :expr="cas[1]" />
         </div>

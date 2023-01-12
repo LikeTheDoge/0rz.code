@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { LangIdentifier } from '@0rz/lang';
-import { computed, defineProps } from 'vue'
+import { computed } from 'vue'
 
 const props = defineProps<{ id: LangIdentifier }>()
 const id = computed(() => props.id)

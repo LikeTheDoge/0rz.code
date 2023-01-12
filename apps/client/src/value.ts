@@ -6,7 +6,7 @@ import JsonNullRender from './components/json/JsonNullRender.vue'
 import JsonNumberRender from './components/json/JsonNumberRender.vue'
 import JsonStringRender from './components/json/JsonStringRender.vue'
 
-import { TYPE_LANG_FUNCTION } from '@0rz/lang'
+import { TYPE_LANG_NATIVE_FUNCTION } from '@0rz/lang'
 import ValueFunctionRender from './components/value/RenderFunction.vue'
 
 
@@ -15,4 +15,4 @@ regist(TYPE_JSON_NUMBER, JsonNumberRender)
 regist(TYPE_JSON_NULL, JsonNullRender)
 regist(TYPE_JSON_STRING, JsonStringRender)
 
-regist(TYPE_LANG_FUNCTION, ValueFunctionRender)
+regist(TYPE_LANG_NATIVE_FUNCTION, ValueFunctionRender)

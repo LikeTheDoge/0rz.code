@@ -15,6 +15,7 @@
     "dependencies": {
         "@0rz/lang": "^0.0.12",
         "@0rz/lang-json": "^0.0.12",
+        "@0rz/utils": "^0.0.12",
         "vue": "^3.2.38",
         "vue-router": "^4.1.6"
     },
